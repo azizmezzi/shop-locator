@@ -1,7 +1,7 @@
 <?php
 
 session_start();
-include ('config.php');
+require ('config.php');
 
 logged();
 
@@ -41,14 +41,9 @@ while($donnees=$req->fetch())
 
 {
 ?>
-<!DOCTYPE html >
-<html>
-<head>
-    <title>suppression</title>
-    <meta charset="UTF-8">
-
-</head>
-<body>
+    <?php
+    require ('header2.php');
+    ?>
 
 <h1>vous etes sur de suprime ce shop definitivement !!</h1>
 
@@ -86,5 +81,6 @@ while($donnees=$req->fetch())
 <form method="post" >
 <input type="submit" name="supprime" value="supprime">
 </form>
-</body>
-</html>
+<?php
+require ('footer.php');
+?>

@@ -1,5 +1,8 @@
+<?php require ('header.php');
+?>
 
 <?php
+
 try {
     include ('config.php');
 
@@ -13,37 +16,26 @@ catch(PDOException $e){
     echo 'echec'.$e->getMessage();
 }
 ?>
-<!DOCTYPE html>
-<html>
-<head>
-    <title>home</title>
-    <meta charset="UTF-8">
 
-</head>
-<body>
-<h1 style="text-align: center"> shop locator</h1>
-
-<div style="margin-left: auto;
-  margin-right: auto ;width: 20% ">
-    <form method="POST" action="login.php">  <input  style="float:left;padding: 10px" type="submit" value="login" id="submit"></form>
-    <form method="POST" action="signUp.php">  <input style="margin-left: 100px;padding: 10px" type="submit" value="sign up" id="submit"></form>
-
-</div>
 <br/>
 <br/>
-<table border="1" style="margin: auto">
-    <tr><td>TITRE</td>
+<h1 class="h1 col-sm-offset-4">Shop Locator</h1>
+<table class="table table-hover" border="1" style="margin: auto;">
+    <thead>
+    <tr><th>TITRE</th>
 
-        <td>TYPE</td>
-        <td>ADRESSE</td>
-        <td>code postal</td>
-        <td>pays</td>
-        <td>ville</td>
-        <td>heur d'ouverture</td>
-        <td>jour d'ouverture</td>
+        <th>TYPE</th>
+        <th>ADRESSE</th>
+        <th>code postal</th>
+        <th>pays</th>
+        <th>ville</th>
+        <th>heur d'ouverture</th>
+        <th>jour d'ouverture</th>
 
 
     </tr>
+    </thead>
+    <tbody>
     <?php
     while($donnees=$requet->fetch())
     {?>
@@ -61,8 +53,6 @@ catch(PDOException $e){
         </tr>
     <?php } ?>
 
-
+    </tbody>
 </table>
-
-</body>
-</html>
+<?php  require  'footer.php';?>

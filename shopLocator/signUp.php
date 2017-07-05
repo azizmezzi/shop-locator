@@ -65,41 +65,44 @@ if(!empty($_POST)) {
 
 }
 ?>
-<html>
-<head>
-    <title>sign up</title>
-    <meta charset="UTF-8">
-</head>
-<body>
-
-<fieldset>
+<?php
+require ('header.php');
+?>
+<fieldset class="form-group">
     <legend>Se connecter</legend>
 
-    <form method="POST" action="">
-    <p>
-        <label for="prenom">entre votre prenom:</label>
-        <input type="text" name="prenom" id="prenom"/>
-    </p>
-    <p>
-        <label for="nom">entre votre nom:</label>
-        <input type="text" name="nom" id="nom"/>
-    </p>
-    <p>
-        <label for="email">entre votre email:</label>
-        <input type="text" name="email" id="email"/>
-    </p>
-    <p>
-        <label for="pass">entre votre mote de passe:</label>
-        <input type="password" name="pass" id="pass"/>
-    </p>
+    <form method="POST" class="form-horizontal" action="">
+    <div class="form-group">
+        <label class="control-label col-sm-2" for="prenom">entre votre prenom:</label>
+        <div class="col-sm-10">
+                <input type="text" name="prenom" class="form-control" placeholder="prenom" id="prenom"/>
+        </div></div>
+    <div class="form-group">
+        <label class="control-label col-sm-2" for="nom">entre votre nom:</label>
+        <div class="col-sm-10">
+        <input type="text" name="nom" class="form-control" placeholder="nom"id="nom"/>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-sm-2" for="email">entre votre email:</label>
+        <div class="col-sm-10">
+        <input type="text" name="email" class="form-control"placeholder="email" id="email"/>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-sm-2" for="pass">entre votre mote de passe:</label>
+        <div class="col-sm-10">
+        <input type="password" name="pass" class="form-control"placeholder="mote de passe" id="pass"/>
+        </div>
+    </div>
 
-    <p>
-        <input type="submit" value="sign in"/>
-        <br/>
-        <button type="submit" name="home">retour home</button>
-    </p>
+    <div class="form-group">
+        <input class="col-sm-offset-4 btn btn-info btn-lg"  type="submit"  value="sign in"/>
+        <button class="col-sm-offset-2  btn btn-success btn-lg" type="submit"  name="home">retour home</button>
+    </div>
 
 </fieldset>
 
-</body>
-</html>
+<?php
+require ('footer.php');
+?>

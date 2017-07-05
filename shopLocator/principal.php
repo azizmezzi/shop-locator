@@ -1,21 +1,10 @@
 <?php
 session_start();
-include ('config.php');
+require ('config.php');
+logged();
 
-if(!isset($_SESSION['auth'])){
-    header('Location:login.php');
-    exit();}
-
+require ('header2.php');
 ?>
-<!DOCTYPE html>
-<html>
-<head>
-    <title>menu principal</title>
-    <meta charset="UTF-8">
-
-</head>
-<body>
-
 
 <h1 style="text-align: center"> shop locator</h1>
 <h1 style="text-align: center"><?
@@ -39,10 +28,9 @@ if(!isset($_SESSION['auth'])){
         if($delete!=0){echo "successful delete";} }
     ?></h1>
 <form action="creation.php" method="post">
-    <input style="margin: auto;   display: block ;padding: 4px" type="submit" value="creation" >
+    <input class="btn btn-primary btn-lg btn-block" type="submit" value="creation" >
 </form>
 <?php
-include ('logout.php');
 
 try {
     $requet = $bdd->prepare("
@@ -55,14 +43,17 @@ catch(PDOException $e){
 ?>
 <br/>
 <br/>
-<table border="1" style="margin: auto">
-<tr><td>TITRE</td>
+<table class="table table-condensed"    >
+    <thead>
+<tr><th>TITRE</th>
 
-    <td>TYPE</td>
-    <td>ADRESSE</td>
-    <td>choix</td>
+    <th>TYPE</th>
+    <th>ADRESSE</th>
+    <th>choix</th>
 
 </tr>
+    </thead>
+    <tbody>
     <?php
     while($donnees=$requet->fetch())
     {?>
@@ -86,8 +77,8 @@ catch(PDOException $e){
 
    ?>
 
-
+    </tbody>
 </table>
-
-</body>
-</html>
+<?php
+require ('footer.php');
+?>

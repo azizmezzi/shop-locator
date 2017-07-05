@@ -1,11 +1,8 @@
 
 <?php
 session_start();
-include ('config.php');
-
-if(!isset($_SESSION['auth'])){
-    header('Location:login.php');
-    exit();}
+require ('config.php');
+logged();
 
 
 if(!empty($_POST))
@@ -47,16 +44,10 @@ if(!empty($_POST))
 }
 
 ?>
-<!DOCTYPE html>
-<html>
-<head>
-    <title>modification</title>
-    <meta charset="UTF-8">
-
-</head>
-<body>
-<?php include ('logout.php');
+<?php
+require ('header2.php');
 ?>
+
 <form  method="post"  >
 
     <p>  <label for="titre">titre de shop</label>
@@ -99,6 +90,6 @@ if(!empty($_POST))
         <input type="submit" name="creation" />
     </p>
 </form>
-
-</body>
-</html>
+<?php
+require ('footer.php');
+?>

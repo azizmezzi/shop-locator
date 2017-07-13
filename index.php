@@ -1,75 +1,47 @@
-<?php 
-
-$nom='aziz';
-setcookie($nom,'aziz mezzi',time()+1,'/');
-
-echo $_COOKIE['aziz'];
-session_start();
-?>
 <!DOCTYPE html>
 <html>
 <head>
-    <title>first</title>
-    <meta charset="utf-8"/>
+    <title>Les formulaires</title>
+    <meta charset="utf-8">
+    <style>label{display: inline-block;min-width: 200px;}</style>
 </head>
+
 <body>
-   
-<form method="POST" action="formulaire.php">
-<p>
-	<label for="prenom">entre votre prenom:</label>
-	<input type="text" name="prenom" id="prenom"/>
-</p>
-<p>
-	<label for="nom">entre votre nom:</label>
-	<input type="text" name="nom" id="nom"/>
-</p>
-<p>
-	<label for="pseudo">entre votre pseudo:</label>
-	<input type="text" name="pseudo" id="pseudo"/>
-</p>
-<p>
-	<input type="submit" name="env"/>
-</p>
-<?php 
-//variable superglobale $_SERVER
-ECHO $_SERVER['PHP_SELF']	.'<br/>';
- 
-ECHO $_SERVER['SERVER_ADDR'].'<br/>';
- 
-ECHO $_SERVER['SERVER_NAME'].'<br/>';
- 
-ECHO $_SERVER['SCRIPT_NAME'].'<br/>';
- 
-ECHO $_SERVER['HTTP_HOST'].'<br/>';
- 
-//$_session
-	$_session['prenom']='aziz';
-	$_session['age']=20;
-	$_session['sport']='foot';
-include_once('index.class.php');
-$visiteur=new visiteur;
-$visiteur->setPrenom('aziz');
-echo $visiteur->getPrenom();
+<h1>Les formulaires HTML</h1>
+<form method="post" action="traitement.php">
+    <label for='prenom'>Entrez votre prénom svp : </label>
+    <input type='text' name='prenom' id='prenom' maxlength='20' required>
+    <span id='missPrenom'></span><br>
 
-$serveur="127.0.0.1";
-$login="root";
-$pass="root";
-try{
-$connexion = new PDO("mysql:host=127.0.0.1;dbname=test2",$login,$pass);
-$connexion->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
+    <label for='mail'>Entrez votre mail : </label>
+    <input type='email' name='mail' id='mail' required><br>
+    <label for='tel'>Numéro de téléphone :</label>
+    <input type='tel' name='tel' id='tel' required><br>
+    <input type='submit' value='Valider' id='bouton_envoi'>
+</form>
 
+<script>
+    var formValid = document.getElementById('bouton_envoi');
+    var prenom = document.getElementById('prenom');
+    var missPrenom = document.getElementById('missPrenom');
+    var prenomValid = /^[a-zA-ZéèîïÉÈÎÏ][a-zéèêàçîï]+([-'\s][a-zA-ZéèîïÉÈÎÏ][a-zéèêàçîï]+)?$/;
 
- }
- catch(PDOException $e){
- 	echo'<br/> echec';
+    formValid.addEventListener('click', validation);
 
- }
- ?>
- <p><a href="login.php">login</a></p>
-    <p><a href="chat.php">mini_chat</a></p>
-    <p><a href="shopLocator/principal.php">princiapl</a></p>
-
-
+    function validation(event){
+        //Si le champ est vide
+        if (prenom.validity.valueMissing){
+            event.preventDefault();
+            missPrenom.textContent = 'Prénom manquant';
+            missPrenom.style.color = 'red';
+            //Si le format de données est incorrect
+        }else if (prenomValid.test(prenom.value) == false){
+            event.preventDefault();
+            missPrenom.textContent = 'Format incorrect';
+            missPrenom.style.color = 'orange';
+        }else{
+        }
+    }
+</script>
 </body>
 </html>
-

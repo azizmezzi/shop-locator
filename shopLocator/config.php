@@ -27,7 +27,7 @@ function logged(){
     }
     if(!isset($_SESSION['auth']))
     {
-        header('Location:login.php');
+        header('Location:home.php');
         exit();
     }
 }

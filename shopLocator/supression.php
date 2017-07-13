@@ -2,11 +2,9 @@
 
 session_start();
 require ('config.php');
-
 logged();
 
-
-include ('logout.php');
+require ('header2.php');
 $id=$_GET['numid'];
 if (isset($_POST['supprime'])){
     $titre=$adresse=$type=$heur=$jour=$pays=$ville=$code='';
@@ -37,49 +35,16 @@ $req=$bdd->prepare("
 SELECT * FROM shop WHERE `id`=:id    ");
 $req->bindParam(":id",$id);
 $req->execute();
-while($donnees=$req->fetch())
-
-{
 ?>
-    <?php
-    require ('header2.php');
-    ?>
 
-<h1>vous etes sur de suprime ce shop definitivement !!</h1>
-
-
-<table border="1" style="margin: auto">
-    <tr><td>TITRE</td>
-
-        <td>TYPE</td>
-        <td>ADRESSE</td>
-        <td>code postal</td>
-        <td>pays</td>
-        <td>ville</td>
-        <td>heur d'ouverture</td>
-        <td>jour d'ouverture</td>
+<br/>
+<br/>
+<h1 style="text-align: center">Tous les donnees de ce Shop seront supprimé</h1>
+<h1 style="text-align: center;">Cette operation est irreversible </h1>
 
 
-    </tr>
-
-        <tr>
-            <td> <?php echo($donnees['titre']); ?>    </td>
-            <td> <?php echo ($donnees['type']);?> </td>
-            <td> <?php echo($donnees['adresse']); ?>    </td>
-            <td> <?php echo($donnees['code postal']); ?>    </td>
-            <td> <?php echo ($donnees['pays']);?> </td>
-            <td> <?php echo($donnees['ville']); ?>    </td>
-            <td> <?php echo($donnees['heur ouverture']); ?>    </td>
-            <td> <?php echo($donnees['jour ouverture']); ?>    </td>
-
-
-        </tr>
-    <?php } ?>
-
-
-</table>
 <form method="post" >
-<input type="submit" name="supprime" value="supprime">
+<input class="btn btn-primary btn-lg"  type="submit" name="supprime" value="supprime"><a href="principal.php" class="col-sm-offset-9 btn btn-success btn-lg" >Retour Accueil</a>
 </form>
 <?php
 require ('footer.php');

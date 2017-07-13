@@ -8,7 +8,7 @@ $req=$bdd->prepare("
 SELECT * FROM shop WHERE `id`=:id    ");
 $req->bindParam(":id",$id);
 $req->execute();
-$titre = $adresse = $type = $heur = $jour = $pays = $ville = $code = '';
+$jour=$longititude=$attitude=$titre = $adresse = $type = $heur  = $pays = $ville = $code = '';
 
 while($donnees=$req->fetch())
 
@@ -18,6 +18,8 @@ $type = ($donnees["type"]);
 $code = ($donnees["code postal"]);
 $pays = ($donnees["pays"]);
 $ville = ($donnees["ville"]);
+$attitude = ($donnees["attitude"]);
+$longititude = ($donnees["longititude"]);
 $heur = ($donnees["heur ouverture"]);
 $jour = ($donnees["jour ouverture"]);}
 ?>
@@ -33,10 +35,13 @@ if (isset($_POST['env'])){
         if(!empty($_POST["code"])){$code = test_input($_POST["code"]);}
         if(!empty($_POST["pays"])){$pays = test_input($_POST["pays"]);}
         if(!empty($_POST["ville"])){$ville = test_input($_POST["ville"]);}
+        if(!empty($_POST["attitude"])){$attitude = test_input($_POST["attitude"]);}
+        if(!empty($_POST["longititude"])){$longititude = test_input($_POST["longititude"]);}
         if(!empty($_POST["heur"])){$heur = test_input($_POST["heur"]);}
-        if(!empty($_POST["jour"])){$jour = test_input($_POST["jour"]);}
+        if(!empty($_POST["jour"])){$jour = $_POST["jour"];}
 
     }
+
     $requet = $bdd->prepare("
     UPDATE `shop` 
     SET `titre`=:titre,
@@ -45,6 +50,8 @@ if (isset($_POST['env'])){
     `code postal`=:code ,
     `pays`=:pays,
     `ville`=:ville,
+    `attitude`=:attitude,
+    `longititude`=:longititude,
     `heur ouverture`=:heur ,
     `jour ouverture`=:jour
       WHERE `id`= :id ");
@@ -55,12 +62,15 @@ if (isset($_POST['env'])){
     $requet->bindParam(":code",$code);
     $requet->bindParam(":pays",$pays);
     $requet->bindParam(":ville",$ville);
+    $requet->bindParam("attitude",$attitude);
+    $requet->bindParam("longititude",$longititude);
     $requet->bindParam(":heur",$heur);
     $requet->bindParam(":jour",$jour);
 
     $requet->bindParam(":id",$id);
     $resultat=$requet->execute();
     if($resultat!=0){
+
         header("Location: principal.php?update=1");
     }
     }
@@ -83,10 +93,14 @@ while($donnees=$req->fetch()) {
     $code = ($donnees["code postal"]);
     $pays = ($donnees["pays"]);
     $ville = ($donnees["ville"]);
+    $attitude = ($donnees["attitude"]);
+    $longititude = ($donnees["longititude"]);
     $heur = ($donnees["heur ouverture"]);
-    $jour = ($donnees["jour ouverture"]);
 
 }
+
+
+
 ?>
 <?php
 require ('header2.php');
@@ -98,12 +112,15 @@ require ('header2.php');
 <form  method="post"  class="form-horizontal">
 
     <div class="form-group">
-        <label class="control-label col-sm-2" for="titre" >titre de shop</label>
+        <label class="control-label col-sm-2" for="titre" >Nom ** : </label>
         <div class="col-sm-10">
-        <input  type="text" name="titre"  placeholder="<?php echo $titre?>"id="titre">
+        <input  type="text" name="titre"  value="<?php echo $titre?>"id="nom">
+            <span class="col-sm-10" id='missPrenom'></span><br>
+
         </div></div>
+
     <div class="form-group">
-        <label class="control-label col-sm-2" for="type">type de shop</label>
+        <label class="control-label col-sm-2" for="type">Type :</label>
         <div class="col-sm-10">
         <select name="type" id="type">
             <option value="market" >market</option>
@@ -111,32 +128,43 @@ require ('header2.php');
             <option value="outlet"  >outlet</option>
         </select>
         </div></div>
+    <fieldset class="col-sm-offset-1">
+        <legend>Adresse :</legend>
     <div class="form-group">
-        <label class="control-label col-sm-2" for="adresse">adresse de shop</label>
+        <label class="control-label col-sm-2" for="adresse">Adresse **:</label>
              <div class="col-sm-10">
-                 <input type="text" name="adresse"  placeholder="<?php echo $adresse?>"id="adresse">
+                 <input type="text" name="adresse"  value="<?php echo $adresse?>"id="adresse">
         </div>
     </div>
-    <div class="form-group">  <label class="control-label col-sm-2" for="code">code postal de shop</label>
+    <div class="form-group">  <label class="control-label col-sm-2" for="code">Code postal **:</label>
         <div class="col-sm-10">
 
-        <input type="text" name="code"  placeholder="<?php echo $code?>" id="code">
+        <input type="text" name="code"  value="<?php echo $code?>" id="code">
         </div></div>
-    <div class="form-group">  <label class="control-label col-sm-2" for="pays">pays de shop</label>
+    <div class="form-group ">  <label class="control-label col-sm-2" for="pays">Pays **:</label>
         <div class="col-sm-10">
-        <input  type="text" name="pays"  placeholder="<?php echo $pays?>" id="pays">
+        <input  type="text" name="pays"  value="<?php echo $pays?>" id="pays">
         </div></div>
-    <div class="form-group">  <label class="control-label col-sm-2" for="ville">ville de shop</label>
+    <div class="form-group">  <label class="control-label col-sm-2" for="ville">Ville **:</label>
         <div class="col-sm-10">
-        <input type="text" name="ville"  placeholder="<?php echo $ville?>" id="ville">
+        <input type="text" name="ville"  value="<?php echo $ville?>" id="ville">
         </div></div>
-    <div class="form-group">  <label class="control-label col-sm-2"for="heur">heur ouverture de shop</label>
+    </fieldset>
+    <div class="form-group">  <label class="control-label col-sm-2"for="attitude">Attitude **:</label>
         <div class="col-sm-10">
-        <input type="text" name="heur"  placeholder="<?php echo $heur?>" id="heur">
+            <input type="text" name="attitude" value="<?php echo $attitude?>" id="attitude">
         </div></div>
-    <div class="form-group">  <label class="control-label col-sm-2" for="jour">jour ouverture de shop</label>
+    <div class="form-group">  <label class="control-label col-sm-2"for="longititude"> Longititude **:</label>
         <div class="col-sm-10">
-        <select name="jour" id="jour">
+            <input type="text" name="longititude" value="<?php echo $longititude?>" id="longititude">
+        </div></div>
+    <div class="form-group">  <label class="control-label col-sm-2"for="heur">Heure d'ouverture :</label>
+        <div class="col-sm-10">
+        <input type="text" name="heur"  value="<?php echo $heur?>" id="heur">
+        </div></div>
+    <div class="form-group">  <label class="control-label col-sm-2" for="jour">Jours :</label>
+        <div class="col-sm-10">
+        <select name="jour" id="jour"multiple>
             <option value="lundi"  >lundi</option>
             <option value="mardi"  >mardi</option>
             <option value="mercredi"  >mercredi</option>
@@ -148,10 +176,36 @@ require ('header2.php');
         </div>
     </div>
     <div class="form-group" >
-        <input type="submit" name="env" value="modification " class="col-sm-offset-4 btn btn-info btn-lg"  />
+        <input type="submit" name="env" id="bouton_envoi" value="modification " class="col-sm-offset-4 btn btn-info btn-lg"  />
     </div>
 </form>
 </fieldset>
+
+    <script>
+        var formValid = document.getElementById('bouton_envoi');
+        var nom = document.getElementById('nom');
+        var missPrenom = document.getElementById('missPrenom');
+        var prenomValid = /^[a-zA-ZéèîïÉÈÎÏ][a-zéèêàçîï]+([-'\s][a-zA-ZéèîïÉÈÎÏ][a-zéèêàçîï]+)?$/;
+
+        formValid.addEventListener('click', validation);
+
+        function validation(event){
+            //Si le champ est vide
+            if (nom.validity.valueMissing) {
+                event.preventDefault();
+                missPrenom.textContent = 'Nom manquant';
+                missPrenom.style.color = 'red';
+                //Si le format de données est incorrect
+            }else if(prenomValid.test(nom.value)==false){
+
+                event.preventDefault();
+                missPrenom.textContent = 'format incorrect';
+                missPrenom.style.color = 'orange';
+            }else{
+
+            }
+        }
+    </script>
 <?php
 require ('footer.php');
 ?>

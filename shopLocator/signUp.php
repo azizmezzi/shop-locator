@@ -110,7 +110,7 @@ require ('header.php');
 
     <div class="form-group">
         <input class="col-sm-offset-4 btn btn-info btn-lg"  type="submit" id="bouton_envoi" value="inscription"/>
-        <button class="col-sm-offset-2  btn btn-success btn-lg" type="submit"  name="home">retour home</button>
+        <button class="col-sm-offset-2  btn btn-success btn-lg" type="submit"  name="home">Retour Accueil  <span class="glyphicon glyphicon-share-alt"></span></button>
     </div>
 
 </fieldset>

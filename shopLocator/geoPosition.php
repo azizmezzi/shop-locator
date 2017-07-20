@@ -17,7 +17,7 @@ while($donnees=$req->fetch())
     ?>
 
 
-    <h1 class="h1"> SHOP : <?php echo($donnees['titre']); ?>    <a href="principal.php" class="col-sm-offset-7 btn btn-success btn-lg" >Retour Accueil</a></h1>
+    <h1 class="h1"> SHOP : <?php echo($donnees['titre']); ?>    <a href="principal.php" class="col-sm-offset-7 btn btn-success btn-lg" >Retour Accueil  <span class="glyphicon glyphicon-share-alt"></span></a></h1>
 
 
 <br>

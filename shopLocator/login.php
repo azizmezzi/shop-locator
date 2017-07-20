@@ -51,11 +51,13 @@ require ('header.php');
 <br/>
 <form method="post" class="form-horizontal" >
     <fieldset>
-        <legend >Connecter</legend>
+        <legend >Connecter <span class="glyphicon glyphicon-user"></span> </legend>
         <div class="form-group">
+
         <label class="control-label col-sm-2" for="nom">Nom ou Mail :</label>
-            <div class="col-sm-10">
-        <input  type="text" name="nom"class="form-control" placeholder="Identification">
+            <div class="input-group col-sm-10">
+                <span class="input-group-addon" id="sizing-addon2"> @</span>
+                <input  type="text" name="nom"class="form-control" placeholder="Identification" aria-describedby="sizing-addon2">
         </div>
         </div>
         <div class="form-group">
@@ -66,7 +68,7 @@ require ('header.php');
         </div>
         <div class="form-group">
         <button class="col-sm-offset-4 btn btn-info btn-lg" type="submit" >Se Connecter</button>
-        <input  type="submit" name="home" class="col-sm-offset-2  btn btn-success btn-lg" value="Retour Accueil">
+            <button  type="submit" name="home" class="col-sm-offset-2  btn btn-success btn-lg">Retour Accueil  <span class="glyphicon glyphicon-share-alt"></span></button>
         </div ></fieldset>
 </form>
 <?php

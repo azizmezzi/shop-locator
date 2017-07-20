@@ -4,7 +4,9 @@ session_start();
 require ('config.php');
 logged();
 
-
+if(isset($_POST["env2"])){
+    header("Location: principal.php");
+}
 if(!empty($_POST))
 {
     $jours="";
@@ -128,6 +130,8 @@ require ('header2.php');
         </div>
         <div class="form-group" >
             <input type="submit" name="env" id="bouton_envoi" value="Creation " class="col-sm-offset-4 btn btn-info btn-lg"  />
+            <a href="principal.php"  class="col-sm-offset-2 btn btn-success btn-lg"  >Retour Accuiel</a>
+
         </div>
     </form>
 </fieldset>

@@ -185,7 +185,7 @@ require ('header2.php');
     </div>
     <div class="form-group" >
         <input type="submit" name="env" id="bouton_envoi" value="modification " class="col-sm-offset-4 btn btn-info btn-lg"  />
-        <input type="submit" name="env2"  value="Retour Accuiel " class="col-sm-offset-2 btn btn-success btn-lg"  />
+        <button type="submit" name="env2"   class="col-sm-offset-2  btn btn-success btn-lg" >Retour Accuiel  <span class="glyphicon glyphicon-share-alt"></span></button>
 
     </div>
 </form>

@@ -7,6 +7,7 @@ logged();
 
 if(!empty($_POST))
 {
+    $jours="";
    $attitude= $longititude=$titre=$adresse=$type=$heur=$jour=$pays=$ville=$code='';
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $titre = test_input($_POST["titre"]);
@@ -18,7 +19,12 @@ if(!empty($_POST))
         $attitude = test_input($_POST["attitude"]);
         $longititude = test_input($_POST["longititude"]);
         $heur=test_input($_POST["heur"]);
-        $jour=test_input($_POST["jour"]);
+        foreach ($_POST["jour"] as  $jours){
+            $jour=$jour.$jours.' /  ';
+        };
+
+
+
 
 
     }
@@ -84,7 +90,7 @@ require ('header2.php');
             <div class="form-group">  <label class="control-label col-sm-2" for="code">Code postal :</label>
                 <div class="col-sm-10">
 
-                    <input type="text" name="code"   id="code" required>
+                    <input type="text" name="code"   id="code" >
                 </div></div>
             <div class="form-group ">  <label class="control-label col-sm-2" for="pays">Pays :</label>
                 <div class="col-sm-10">
@@ -103,13 +109,13 @@ require ('header2.php');
             <div class="col-sm-10">
                 <input type="text" name="longititude"  id="longititude"required>
             </div></div>
-        <div class="form-group">  <label class="control-label col-sm-2"for="heur"required>Heure d'ouverture :</label>
+        <div class="form-group">  <label class="control-label col-sm-2"for="heur">Heure d'ouverture :</label>
             <div class="col-sm-10">
                 <input type="text" name="heur"  id="heur">
             </div></div>
-        <div class="form-group">  <label class="control-label col-sm-2" for="jour"required>Jours :</label>
+        <div class="form-group">  <label class="control-label col-sm-2" for="jour">Jours :</label>
             <div class="col-sm-10">
-                <select class="selectpicker" name="jour" id="jour" multiple>
+                <select class="selectpicker" name="jour[]" id="jour" multiple>
                     <option value="lundi"  >lundi</option>
                     <option value="mardi"  >mardi</option>
                     <option value="mercredi"  >mercredi</option>

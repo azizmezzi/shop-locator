@@ -53,7 +53,7 @@ catch(PDOException $e){
             <td> <?php echo($donnees['ville']); ?>    </td>
             <td>
 
-               <a  href="geoPosition.php?con=2&numid=<? echo $donnees['id'];?>">VOIRE</a>
+               <a  href="geoPosition.php?con=2&numid=<? echo $donnees['id'];?>">VOIR</a>
             </td>
 
 

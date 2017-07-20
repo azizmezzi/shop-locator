@@ -43,5 +43,15 @@
         }
     }
 </script>
+
+<?php
+
+$num = 5;
+$word = 'banana';
+$format = 'can you say %d times the word %s';
+$n= sprintf($format, $num, $word);
+echo $n;
+?>
+
 </body>
 </html>

@@ -21,7 +21,7 @@ $ville = ($donnees["ville"]);
 $attitude = ($donnees["attitude"]);
 $longititude = ($donnees["longititude"]);
 $heur = ($donnees["heur ouverture"]);
-$jour = ($donnees["jour ouverture"]);}
+}
 ?>
 
 <?php
@@ -38,7 +38,9 @@ if (isset($_POST['env'])){
         if(!empty($_POST["attitude"])){$attitude = test_input($_POST["attitude"]);}
         if(!empty($_POST["longititude"])){$longititude = test_input($_POST["longititude"]);}
         if(!empty($_POST["heur"])){$heur = test_input($_POST["heur"]);}
-        if(!empty($_POST["jour"])){$jour = $_POST["jour"];}
+        if(!empty($_POST["jour"])){foreach ($_POST["jour"] as  $jours){
+            $jour=$jour.$jours.' /  ';
+        };}
 
     }
 
@@ -74,7 +76,9 @@ if (isset($_POST['env'])){
         header("Location: principal.php?update=1");
     }
     }
-
+    if(isset($_POST["env2"])){
+    header("Location: principal.php");
+    }
 
 
 }
@@ -96,6 +100,7 @@ while($donnees=$req->fetch()) {
     $attitude = ($donnees["attitude"]);
     $longititude = ($donnees["longititude"]);
     $heur = ($donnees["heur ouverture"]);
+
 
 }
 
@@ -162,9 +167,12 @@ require ('header2.php');
         <div class="col-sm-10">
         <input type="text" name="heur"  value="<?php echo $heur?>" id="heur">
         </div></div>
+    <script type="text/javascript">
+        $('#jour').multiselect();
+    </script>
     <div class="form-group">  <label class="control-label col-sm-2" for="jour">Jours :</label>
         <div class="col-sm-10">
-        <select name="jour" id="jour"multiple>
+        <select name="jour[]"  id="jour" class="selectpicker" multiple>
             <option value="lundi"  >lundi</option>
             <option value="mardi"  >mardi</option>
             <option value="mercredi"  >mercredi</option>
@@ -177,6 +185,8 @@ require ('header2.php');
     </div>
     <div class="form-group" >
         <input type="submit" name="env" id="bouton_envoi" value="modification " class="col-sm-offset-4 btn btn-info btn-lg"  />
+        <input type="submit" name="env2"  value="Retour Accuiel " class="col-sm-offset-2 btn btn-success btn-lg"  />
+
     </div>
 </form>
 </fieldset>
@@ -209,3 +219,4 @@ require ('header2.php');
 <?php
 require ('footer.php');
 ?>
+

@@ -73,7 +73,7 @@ catch(PDOException $e){
 
         <td style=" text-align: center;">
 
-            <p> <a href="modification.php?numid=<? echo $donnees['id'];?>">Modification</a> | <a href="supression.php?numid=<? echo $donnees['id'];?>">Suppression</a> | <a href="geoPosition.php?con=1&numid=<? echo $donnees['id'];?>">Voire</a></p>
+            <p> <a href="modification.php?numid=<? echo $donnees['id'];?>">Modification</a> | <a href="supression.php?numid=<? echo $donnees['id'];?>">Suppression</a> | <a href="geoPosition.php?con=1&numid=<? echo $donnees['id'];?>">Voir</a></p>
         </td>
 
     </tr>
